@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import DropzoneComponent from "react-dropzone-component";
+
+import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 export default class PortfolioForm extends Component {
     constructor (props) {
+        console.log(props);
         super(props);
 
         this.state = {
@@ -18,6 +23,44 @@ export default class PortfolioForm extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.componentConfig = this.componentConfig.bind(this);
+        this.djsConfig = this.djsConfig.bind(this);
+        this.handleThumbDrop = this.handleThumbDrop.bind(this);
+        this.handleBannerDrop = this.handleBannerDrop.bind(this);
+        this.handleLogoDrop = this.handleLogoDrop.bind(this);
+    }
+
+    handleThumbDrop() {
+        return {
+            addedfile: file => this.setState({ thumb_image: file })
+        };
+    }
+
+    handleBannerDrop() {
+        return {
+            addedfile: file => this.setState({ banner_image: file })
+        };
+    }
+
+    handleLogoDrop() {
+        return {
+            addedfile: file => this.setState({ logo: file })
+        };
+    }
+
+    componentConfig() {
+        return {
+            iconFiletypes: [".jpg", ".png"],
+            showFiletypeIcon: true,
+            postUrl: "https://httpbin.org/post"
+        }
+    }
+
+    djsConfig() {
+        return {
+            addRemoveLinks: true,
+            maxFiles: 1
+        }
     }
 
     buildForm() {
@@ -29,7 +72,19 @@ export default class PortfolioForm extends Component {
         formData.append("portfolio_item[category]", this.state.category);
         formData.append("portfolio_item[position]", this.state.position);
 
-        debugger;
+        if (this.state.thumb_image) {
+            formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+        }
+
+        if (this.state.banner_image) {
+            formData.append("portfolio_item[banner_image]", this.state.banner_image);
+        }
+
+        if (this.state.logo) {
+            formData.append("portfolio_item[logo]", this.state.logo);
+        }
+
+        //debugger;
 
         return formData;
     }
@@ -115,6 +170,32 @@ export default class PortfolioForm extends Component {
                         value={this.state.description}
                         onChange={this.handleChange}
                     />
+                </div>
+
+                <div className='image-uploaders'>
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleThumbDrop()}
+                    >
+
+                    </DropzoneComponent>
+
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleBannerDrop()}
+                    >
+
+                    </DropzoneComponent>
+
+                    <DropzoneComponent 
+                        config={this.componentConfig()}
+                        djsConfig={this.djsConfig()}
+                        eventHandlers={this.handleLogoDrop()}
+                    >
+
+                    </DropzoneComponent>
                 </div>
 
                 <div>
