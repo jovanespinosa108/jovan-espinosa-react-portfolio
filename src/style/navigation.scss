@@ -8,6 +8,19 @@
     display: flex;
 }
 
+.right-side {
+    a {
+        margin-left: 15px;
+        cursor: pointer;
+        color: $teal;
+        transition: .5s ease-in-out;
+        
+        &:hover {
+            color: $dark-teal;
+        }
+    }
+}
+
 .nav-link-wrapper {
     height: 22px;
     border-bottom: 1px solid transparent;

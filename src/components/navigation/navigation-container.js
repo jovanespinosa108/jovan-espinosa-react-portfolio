@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router'; //HOC component awlays start with lower case letter
 import { NavLink } from 'react-router-dom';
 
@@ -64,7 +65,9 @@ const NavigationComponent = props => {
             <div className='right-side'>
                 JOVAN ESPINOSA
                 {props.loggedInStatus === "LOGGED_IN" ? (
-                    <a onClick={handleSignOut}>Sign Out</a>
+                    <a onClick={handleSignOut}>
+                        <FontAwesomeIcon icon= "right-from-bracket" />
+                    </a>
                 ) : null}
             </div>
         </div>

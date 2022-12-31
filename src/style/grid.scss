@@ -1,0 +1,17 @@
+.one-column {
+    @include base-grid();
+    grid-template-columns: 1fr;
+}
+
+.two-column {
+    @include base-grid();
+    grid-template-columns: 1fr 1fr;
+}
+
+
+//This code can be use if want large grid squares in the dropzone lables
+// .three-column {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr;
+//     grid-gap: 21px;
+// }

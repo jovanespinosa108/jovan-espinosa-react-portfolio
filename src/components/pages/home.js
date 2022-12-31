@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PortfolioContainer from "../portfolio/portfolio-container";
 
-export default  class Rules extends Component {
-   render() {
-       return (
+export default function() {
+    return (
         <div>
             <PortfolioContainer />
         </div>
-       );
-    }
+    );
+
 }
