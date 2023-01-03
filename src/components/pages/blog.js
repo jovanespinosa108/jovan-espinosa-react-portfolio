@@ -88,14 +88,14 @@ class Blog extends Component {
 
     axios
       .get(
-        `https://jovanespinosa.devcamp.space/portfolio/portfolio_blogs?page=${this
-          .state.currentPage}`,
+        `https://jovanespinosa.devcamp.space/portfolio/portfolio_blogs?page=${
+          this.state.currentPage
+        }`,
         {
           withCredentials: true
         }
       )
       .then(response => {
-        console.log("gettting", response.data);
         this.setState({
           blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
           totalCount: response.data.meta.total_records,
@@ -139,7 +139,6 @@ class Blog extends Component {
             modalIsOpen={this.state.blogModalIsOpen}
         />
 
-        
         {this.props.loggedInStatus === "LOGGED_IN" ? (
           <div className="new-blog-link">
               <a onClick={this.handleNewBlogClick}>
